@@ -1,0 +1,14 @@
+* {
+  margin: auto;
+  text-align: center;
+}
+.profile{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
+}
+
+.card{
+  width: 400px;
+  height: 80%;
+}

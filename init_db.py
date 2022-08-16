@@ -24,7 +24,20 @@ def get_url():
       urls.append(url)
       
 def url_detail():
-  for url in urls:
+  # for url in urls:
+  #   data = requests.get(url, headers=headers)
+  #   soup = BeautifulSoup(data.text, 'html.parser')
+  #   star_info = soup.select_one("#content > div.article > div.mv_info_area")
+  #   name = star_info.select_one('div.mv_info.character > h3 > a').text
+  #   image = star_info.select_one('div.poster > img')['src']
+  #   # print(name, image)
+  #   doc = {
+  #     'id': 0, 'name': name, 'image': image, 'url' : url, 'like': 0
+  #   }
+  #   db.movie_star.insert_one(doc)
+  #   print('완료', name)
+
+  for i,url in enumerate(urls):
     data = requests.get(url, headers=headers)
     soup = BeautifulSoup(data.text, 'html.parser')
     star_info = soup.select_one("#content > div.article > div.mv_info_area")
@@ -32,10 +45,10 @@ def url_detail():
     image = star_info.select_one('div.poster > img')['src']
     # print(name, image)
     doc = {
-      'name': name, 'image': image, 'url' : url, 'like': 0
+      'id': i, 'name': name, 'image': image, 'url' : url, 'like': 0
     }
     db.movie_star.insert_one(doc)
-    print('완료', name)
+    print('완료', i,  name)
 
 def insert_all():
   db.movie_star.drop()
